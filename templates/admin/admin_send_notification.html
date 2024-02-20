@@ -1,0 +1,39 @@
+{%include "admin/admin_header.html"%}
+<form action="" method="post">
+    {% csrf_token %}
+
+    <table>
+        <tr>
+            <th>Title</th>
+            <td><input type="text" name="title"></td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td><textarea name="description" id="" cols="30" rows="10"></textarea></td>
+        </tr>
+        <tr>
+            <th>Date</th>
+            <td><input type="date" name="date"></td>
+        </tr>
+        <tr>
+            <td><input type="submit" name="submit" value="SEND"></td>
+        </tr>
+    </table>
+</form>
+<table>
+    <tr>
+        <th>TITLE</th>
+        <th>DESCRIPTION</th>
+        <th>DATE</th>
+    </tr>
+    {%for i in q2%}
+    <tr>
+        <td>{{i.title}}</td>
+        <td>{{i.description}}</td>
+        <td>{{i.date}}</td>
+
+        <td><a href="delete_notification/{{i.id}}">DELETE</a></td>
+    </tr>
+    {%endfor%}
+</table>
+{%include "footer.html"%}
