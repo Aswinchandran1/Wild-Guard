@@ -13,7 +13,11 @@ def login(request):
 def register(request):
     return render(request,'register.html')
     
+#ADMIN HOME
+def admin_home(request):
+     return render(request,'admin/admin_home.html')
 
+#END OFADMIN HOME
 #MANAGE FOREST DIVISION   
 def forest_division(request):
     q2=Forest_Division.objects.all()
@@ -154,6 +158,7 @@ def delete_officer(request,id):
     return HttpResponse("<script>alert('deleted.....');window.location='/forestofficer'</script>")
 #END OF MANAGE FOREST OFFICER
 
+#NOTIFICATION
 def send_notification(request):
     q2=Notification.objects.all()
     if 'submit' in request.POST:
@@ -169,4 +174,19 @@ def delete_notification(request,id):
     q3=Notification.objects.get(id=id)
     q3.delete()
     return HttpResponse("<script>alert('deleted.....');window.location='/notifications'</script>")
-    
+
+#END NOTIFICATION
+
+#complaints
+def view_complaints(request):
+    q2=Complaints.objects.all()
+    return render(request,'admin/admin_view_complaints.html',{'q2':q2})
+
+def send_replay(request):
+    q3=Complaints.objects.get(id=id)
+    if 'submit' in request.POST:
+        replay=request.POST['replay']
+        q3.reply=replay
+        q3.save()
+        return HttpResponse("<script>alert('replaied.....');window.location='/complaints'</script>")
+    return render(request,'admin/admin_send_replay.html')

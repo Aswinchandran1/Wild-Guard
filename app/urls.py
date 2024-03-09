@@ -7,6 +7,8 @@ urlpatterns = [
     path('login',views.login),
     path('register',views.register),
 
+    path('adminhome',views.admin_home),
+
     path('forestdivision',views.forest_division),
     path('update_division/<id>',views.update_division),
     path('delete_division/<id>',views.delete_division),
@@ -25,4 +27,7 @@ urlpatterns = [
 
     path('notifications',views.send_notification),
     path('delete_notification/<id>',views.delete_notification),
+
+    path('complaints',views.view_complaints),
+    path('send_replay/<id>',views.send_replay),
 ]
